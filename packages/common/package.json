@@ -1,14 +1,15 @@
 {
-  "name": "common",
+  "name": "@blog/common",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "reusable codes goes here",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "build": "rm -rf ./dist && tsc"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "yup": "^0.28.1"
   },

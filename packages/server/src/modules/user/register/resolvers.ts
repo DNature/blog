@@ -1,14 +1,9 @@
 import { validUserSchema } from "@blog/common";
 
-import { ResolverMap } from "../../../types/graphqlUtils";
+import { ResolverMap, Errors } from "../../../types/graphqlUtils";
 import { User } from "../../../entity/User";
 import { formatYupError } from "../../../utils/formatYupError";
 import { duplicateEmail } from "./errorMessages";
-
-interface Errors {
-  path: string;
-  message: string;
-}
 
 export const resolvers: ResolverMap = {
   Mutation: {

@@ -1,1 +1,1 @@
-export default GQL;
+// export default GQL;
