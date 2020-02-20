@@ -1,7 +1,10 @@
 {
-  "name": "new-typeorm-project",
+  "name": "@blog/server",
+  "license": "MIT",
   "version": "0.0.1",
   "description": "Awesome project developed with TypeORM.",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "devDependencies": {
     "@gql2ts/from-schema": "^1.10.1",
     "@types/bcrypt": "^3.0.0",
@@ -39,7 +42,8 @@
     "reflect-metadata": "^0.1.10",
     "typeorm": "0.2.22",
     "uuid": "^3.4.0",
-    "yup": "^0.28.1"
+    "yup": "^0.28.1",
+    "@blog/common": "1.0.0"
   },
   "scripts": {
     "start": "clear; NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
