@@ -22,14 +22,15 @@ export class User extends BaseEntity {
   @Column("varchar", { nullable: false, length: 255 }) createdAt: string;
 
   @BeforeInsert()
-  async hashPasswordBeforeInsert() {
+  async hashPasswordBeforeInsert (): Promise<string | undefined> {
     if (this.password) {
-      this.password = await bcrypt.hash(this.password, 12);
+      return this.password = await bcrypt.hash(this.password, 12);
     }
+    return
   }
 
   @BeforeInsert()
-  async createDate() {
-    this.createdAt = new Date().toISOString();
+  async createDate(): Promise<any> {
+    return this.createdAt = new Date().toISOString();
   }
 }

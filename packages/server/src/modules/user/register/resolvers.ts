@@ -1,8 +1,9 @@
 import * as yup from "yup";
 
-import { ResolverMap } from "../../types/graphqlUtils";
-import GQL from "../../types/GQL";
-import { User } from "../../entity/User";
+import { ResolverMap } from "../../../types/graphqlUtils";
+import { User } from "../../../entity/User";
+import { formatYupError } from "../../../utils/formatYupError";
+import { duplicateEmail } from './errorMessages';
 
 export const registerValidation = yup.object().shape({
   email: yup
@@ -18,24 +19,38 @@ export const registerValidation = yup.object().shape({
     .required()
 });
 
-export const resolvers: ResolverMap = {
-  Query: {
-    hello: (_, { name }: GQL.IHelloOnQueryArguments): string =>
-      `Hello ${name || "world"}`
-  },
+interface Errors{
+  path: string;
+  message: string;
+}
 
+export const resolvers: ResolverMap = {
   Mutation: {
     register: async (
       _,
       { email, password }: GQL.IRegisterOnMutationArguments
-    ): Promise<boolean | any> => {
+    ): Promise<Errors[] | null | void> => {
       try {
         await registerValidation.validate(
           { email, password },
           { abortEarly: false }
         );
       } catch (err) {
-        return new Error(err);
+        return formatYupError(err);
+      }
+
+      const userAlreadyExist = await User.findOne({
+        where: { email },
+        select: ["id"]
+      });
+
+      if (userAlreadyExist) {
+        return [
+          {
+            path: "email",
+            message: duplicateEmail
+          }
+        ];
       }
       const user = User.create({
         email,
@@ -43,7 +58,7 @@ export const resolvers: ResolverMap = {
       });
 
       await user.save();
-      return true;
+      return null;
     }
   }
 };
