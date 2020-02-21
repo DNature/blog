@@ -41,7 +41,14 @@ export interface ErrorsMap {
   sessionId?: string;
 }
 
+
 export interface UserMap {
+  id?: string;
+  email?: string;
+  fullName?: string;
+}
+
+export interface MeQuery {
   id?: string;
   email?: string;
   fullName?: string;

@@ -1,5 +1,5 @@
 import * as rp from "request-promise";
-import { ErrorsMap, Errors } from "../types/graphqlUtils";
+import { ErrorsMap, Errors, MeQuery } from "../types/graphqlUtils";
 
 export class TestClient {
   url: string;
@@ -22,7 +22,11 @@ export class TestClient {
     };
   }
 
-  async register(email: string, password: string, fullName: string): Promise<Errors[]> {
+  async register(
+    email: string,
+    password: string,
+    fullName: string
+  ): Promise<Errors[]> {
     return await rp.post(this.url, {
       ...this.options,
       body: {
@@ -61,6 +65,22 @@ export class TestClient {
         if (err) console.log(err);
       }
     );
+  }
+
+  async me(): Promise<MeQuery> {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+            {
+              me{
+                id
+                email
+              }
+          }
+        `
+      }
+    });
   }
 
   /*

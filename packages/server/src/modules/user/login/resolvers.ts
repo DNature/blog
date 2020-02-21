@@ -33,7 +33,6 @@ export const resolvers: ResolverMap = {
         }
 
         session.userId = user.id;
-        console.log(session);
         if (req.sessionID) {
           await redis.lpush(`${userSessionIdPrefix}${user.id}`, req.sessionID);
         }
