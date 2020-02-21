@@ -18,7 +18,7 @@ export const resolvers: ResolverMap = {
       _,
       { email, password }: GQL.ILoginOnMutationArguments,
       { session, redis, req }
-    ): Promise<void | ErrorsMap | null> => {
+    ): Promise<ErrorsMap> => {
       const user = await User.findOne({ where: { email } });
 
       if (!user) {

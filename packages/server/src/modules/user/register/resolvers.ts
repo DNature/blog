@@ -1,16 +1,16 @@
-import { validUserSchema } from "@blog/common";
+import { validUserSchema, registerError } from "@blog/common";
 
 import { ResolverMap, Errors } from "../../../types/graphqlUtils";
 import { User } from "../../../entity/User";
 import { formatYupError } from "../../../utils/formatYupError";
-import { duplicateEmail } from "./errorMessages";
 
 export const resolvers: ResolverMap = {
   Mutation: {
     register: async (
       _,
-      { email, password }: GQL.IRegisterOnMutationArguments
-    ): Promise<Errors[] | null | void> => {
+      args: GQL.IRegisterOnMutationArguments
+    ): Promise<Errors[] | null> => {
+      const { email, password } = args;
       try {
         await validUserSchema.validate(
           { email, password },
@@ -26,18 +26,9 @@ export const resolvers: ResolverMap = {
       });
 
       if (userAlreadyExist) {
-        return [
-          {
-            path: "email",
-            message: duplicateEmail
-          }
-        ];
+        return [registerError];
       }
-      const user = User.create({
-        email,
-        password
-      });
-
+      const user = User.create({ email, password });
       await user.save();
       return null;
     }

@@ -46,7 +46,7 @@ export const startServer = async (): Promise<Server | any> => {
       windowMs: 15 * 60 * 100,
       max: 100,
       message:
-        "Too many accounts created from this IP, please try again after an hour"
+        "Too many requests created from this IP, please try again after an hour"
     })
   );
 
@@ -57,7 +57,7 @@ export const startServer = async (): Promise<Server | any> => {
         prefix: redisSessionPrefix
       }),
       name: "sesId",
-      secret: process.env.SESSION_SECRET as string,
+      secret: "process.env.SESSION_SECRET as string",
       resave: false,
       saveUninitialized: false,
       cookie: {
@@ -75,7 +75,7 @@ export const startServer = async (): Promise<Server | any> => {
 
   if (process.env.NODE_ENV === "test") {
     await redis.flushall();
-    await createTestConn();
+    await createTestConn(true);
   } else {
     await createTypeormConn();
   }
