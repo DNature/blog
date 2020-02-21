@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const yup = require("yup");
-const errors_1 = require("./errors");
+const errors_1 = require("../errors/errors");
 exports.registerPasswordValidation = yup
     .string()
     .min(8, errors_1.passwordNotLongEnough)
@@ -9,7 +9,7 @@ exports.registerPasswordValidation = yup
     .required();
 exports.emailValidation = yup
     .string()
-    .min(3, errors_1.emailNotLongEnough)
+    .min(5, errors_1.invalidEmail)
     .max(255)
     .email(errors_1.invalidEmail)
     .required();

@@ -1,9 +1,5 @@
 import * as yup from "yup";
-import {
-  passwordNotLongEnough,
-  emailNotLongEnough,
-  invalidEmail
-} from "./errors";
+import { passwordNotLongEnough, invalidEmail } from "../errors/errors";
 
 export const registerPasswordValidation = yup
   .string()
@@ -13,7 +9,7 @@ export const registerPasswordValidation = yup
 
 export const emailValidation = yup
   .string()
-  .min(3, emailNotLongEnough)
+  .min(5, invalidEmail)
   .max(255)
   .email(invalidEmail)
   .required();

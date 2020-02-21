@@ -5,16 +5,22 @@ import {
   invalidEmail,
   passwordNotLongEnough
 } from "@blog/common";
+import { Connection } from "typeorm";
 
-import { createTypeormConn } from "../../../utils/createTypeormConn";
 import { User } from "../../../entity/User";
 import { TestClient } from "../../../utils/TestClient";
 import { testHost } from "../../../utils/constants";
+import { createTestConn } from "../../../testUtils/createTestConn";
+
+let conn: Connection;
 
 beforeAll(async () => {
-  await createTypeormConn();
+  conn = await createTestConn();
 });
 
+afterAll(async () => {
+  await conn.close();
+});
 const email = faker.internet.email();
 const password = faker.internet.password();
 
