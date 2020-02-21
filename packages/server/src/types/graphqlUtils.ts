@@ -40,3 +40,9 @@ export interface ErrorsMap {
   errors?: Errors[];
   sessionId?: string;
 }
+
+export interface UserMap {
+  id?: string;
+  email?: string;
+  fullName?: string;
+}

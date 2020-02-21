@@ -3,3 +3,4 @@ export const passwordNotLongEnough = "password must be at least 5 characters";
 export const invalidEmail = "email must be a valid email";
 export const invalidCredentials = "invalid credentials";
 export const duplicateEmail = "Already taken";
+export const shortName= 'Too short'

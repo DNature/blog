@@ -10,10 +10,10 @@ export const resolvers: ResolverMap = {
       _,
       args: GQL.IRegisterOnMutationArguments
     ): Promise<Errors[] | null> => {
-      const { email, password } = args;
+      const { email, password, fullName } = args;
       try {
         await validUserSchema.validate(
-          { email, password },
+          { email, password, fullName },
           { abortEarly: false }
         );
       } catch (err) {
@@ -28,7 +28,7 @@ export const resolvers: ResolverMap = {
       if (userAlreadyExist) {
         return [registerError];
       }
-      const user = User.create({ email, password });
+      const user = User.create({ email, password, fullName });
       await user.save();
       return null;
     }

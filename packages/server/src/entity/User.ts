@@ -20,7 +20,7 @@ export class User extends BaseEntity {
   @Column("text", { nullable: true })
   password: string | null;
 
-  @Column("varchar", { nullable: true, length: 255 }) fullName: string | null;
+    @Column("varchar", { length: 255 }) fullName: string | null;
   @Column("varchar", { nullable: false, length: 255 }) createdAt: string;
 
   @OneToMany(() => Article, article => article.author)

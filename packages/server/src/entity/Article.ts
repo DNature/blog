@@ -14,7 +14,7 @@ export class Article extends BaseEntity {
 
     @Column( "varchar", { length: 100 } ) readTime: string;
 
-    @Column("varchar", {length: 255}) userId: string;
+    @Column("varchar") userId: string;
 
     // @Column( "varchar", { length: 100 }) author: string;    
 
@@ -22,6 +22,5 @@ export class Article extends BaseEntity {
 
     @ManyToOne(() => User, user => user.articles)
     @JoinColumn({name: "userId"})
-    author: string
-
+    author: string;
 }

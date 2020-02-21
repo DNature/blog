@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { passwordNotLongEnough, invalidEmail } from "../errors/errors";
+import { passwordNotLongEnough, invalidEmail, shortName } from "../errors/errors";
 
 export const registerPasswordValidation = yup
   .string()
@@ -14,7 +14,14 @@ export const emailValidation = yup
   .email(invalidEmail)
   .required();
 
+export const fullNameValidation = yup
+  .string()
+  .min(3, shortName )
+  .required()
+  .max(255)
+
 export const validUserSchema = yup.object().shape({
   email: emailValidation,
-  password: registerPasswordValidation
+  password: registerPasswordValidation,
+  fullName: fullNameValidation
 });

@@ -13,8 +13,14 @@ exports.emailValidation = yup
     .max(255)
     .email(errors_1.invalidEmail)
     .required();
+exports.fullNameValidation = yup
+    .string()
+    .min(3, errors_1.shortName)
+    .required()
+    .max(255);
 exports.validUserSchema = yup.object().shape({
     email: exports.emailValidation,
-    password: exports.registerPasswordValidation
+    password: exports.registerPasswordValidation,
+    fullName: exports.fullNameValidation
 });
 //# sourceMappingURL=user.js.map

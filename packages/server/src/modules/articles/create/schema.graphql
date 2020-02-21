@@ -1,0 +1,13 @@
+input Article {
+  title: String!
+  body: String!
+  createdAt: String!
+  readTime: String!
+  userId: String!
+  author: String!
+  tags: [String!]!
+}
+
+type Mutation {
+  createArticle(input: Article): Boolean!
+}

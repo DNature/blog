@@ -22,13 +22,13 @@ export class TestClient {
     };
   }
 
-  async register(email: string, password: string): Promise<Errors[]> {
+  async register(email: string, password: string, fullName: string): Promise<Errors[]> {
     return await rp.post(this.url, {
       ...this.options,
       body: {
         query: `
           mutation {
-              register(email: "${email}" password: "${password}") {
+              register(email: "${email}" password: "${password}"  fullName: "${fullName}") {
                 path
                 message
               }
