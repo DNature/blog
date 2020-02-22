@@ -1,10 +1,10 @@
-type User {
-  id: ID!
-  email: String!
-  fullName: String!
+type UserMutation {
+  id: ID
+  email: String
+  fullName: String
   errors: [Error!]
 }
 
 type Query {
-  me: User!
+  me: UserMutation!
 }
