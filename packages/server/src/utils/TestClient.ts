@@ -97,4 +97,25 @@ export class TestClient {
       }
     });
   } */
+
+  async createArticle(): Promise<Errors[] | null> {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+        mutation {
+            createArticle(input:{
+              title:"First Article"
+              body:"There are two main options to displaying code on your site - embedding the code or using JavaScript to highlight the syntax of pre and code tags.The faster, easier option for syntax highlighting is embedding the code in the form of a GitHub gist or Codepen pen. Both of these can be done with an account or anonymously.The faster, easier option for syntax highlighting is embedding the code in the form of a GitHub gist or Codepen pen. Both of these can be done with an account or anonymously."
+              readTime:"6 mins",
+              tags:["Hello", "hello world"]
+            }){
+              path
+              message
+            }
+          }
+        `
+      }
+    });
+  }
 }

@@ -35,11 +35,18 @@ __typename: "User";
 id: string;
 email: string;
 fullName: string;
+errors: Array<IError> | null;
+}
+
+interface IError {
+__typename: "Error";
+path: string;
+message: string;
 }
 
 interface IMutation {
 __typename: "Mutation";
-createArticle: boolean;
+createArticle: Array<IError> | null;
 login: ILoginResponse | null;
 register: Array<IError> | null;
 }
@@ -62,10 +69,7 @@ fullName: string;
 interface IArticle {
 title: string;
 body: string;
-createdAt: string;
 readTime: string;
-userId: string;
-author: string;
 tags: Array<string>;
 }
 
@@ -73,12 +77,6 @@ interface ILoginResponse {
 __typename: "LoginResponse";
 errors: Array<IError> | null;
 sessionId: string | null;
-}
-
-interface IError {
-__typename: "Error";
-path: string;
-message: string;
 }
 }
 

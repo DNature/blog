@@ -6,4 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./errors/errors"));
 __export(require("./yupSchema/user"));
 __export(require("./errors/errorResponse"));
+__export(require("./yupSchema/article"));
 //# sourceMappingURL=index.js.map

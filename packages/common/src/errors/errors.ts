@@ -4,3 +4,4 @@ export const invalidEmail = "email must be a valid email";
 export const invalidCredentials = "invalid credentials";
 export const duplicateEmail = "Already taken";
 export const shortName= 'Too short'
+export const notAuthenticated = "Not Authenticated"

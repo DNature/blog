@@ -1,6 +1,8 @@
-import { duplicateEmail } from '..';
+type Errors = {
+  path: string;
+  message: string;
+}
 
-export const registerError = {
-         path: "email",
-         message: duplicateEmail
-       };
+export const validationError = (path: string, message: string): Errors  => {
+return { path, message };
+}

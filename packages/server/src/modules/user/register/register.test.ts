@@ -1,9 +1,10 @@
 // import { request } from "graphql-request";
 import * as faker from "faker";
 import {
-  registerError,
+  validationError,
   invalidEmail,
-  passwordNotLongEnough
+  passwordNotLongEnough,
+  duplicateEmail
 } from "@blog/common";
 import { Connection } from "typeorm";
 
@@ -40,7 +41,7 @@ describe("Register tests", () => {
 
     const response2: any = await client.register(email, password, fullName);
     expect(response2.data.register).toHaveLength(1);
-    expect(response2.data.register[0]).toEqual(registerError);
+    expect(response2.data.register[0]).toEqual(validationError("email", duplicateEmail));
   });
 
   it("for invalid email", async () => {

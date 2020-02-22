@@ -1,4 +1,4 @@
-import { validUserSchema, registerError } from "@blog/common";
+import { validUserSchema, validationError, duplicateEmail } from "@blog/common";
 
 import { ResolverMap, Errors } from "../../../types/graphqlUtils";
 import { User } from "../../../entity/User";
@@ -26,7 +26,7 @@ export const resolvers: ResolverMap = {
       });
 
       if (userAlreadyExist) {
-        return [registerError];
+        return [validationError("email", duplicateEmail)];
       }
       const user = User.create({ email, password, fullName });
       await user.save();

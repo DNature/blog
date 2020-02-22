@@ -6,4 +6,5 @@ exports.invalidEmail = "email must be a valid email";
 exports.invalidCredentials = "invalid credentials";
 exports.duplicateEmail = "Already taken";
 exports.shortName = 'Too short';
+exports.notAuthenticated = "Not Authenticated";
 //# sourceMappingURL=errors.js.map

@@ -1,8 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const __1 = require("..");
-exports.registerError = {
-    path: "email",
-    message: __1.duplicateEmail
+exports.validationError = (path, message) => {
+    return { path, message };
 };
 //# sourceMappingURL=errorResponse.js.map
