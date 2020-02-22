@@ -48,6 +48,7 @@ interface IMutation {
 __typename: "Mutation";
 createArticle: Array<IError> | null;
 login: ILoginResponse | null;
+logout: boolean;
 register: Array<IError> | null;
 }
 

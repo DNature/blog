@@ -83,7 +83,6 @@ export class TestClient {
     });
   }
 
-  /*
 
   async logout(): Promise<boolean> {
     return rp.post(this.url, {
@@ -96,7 +95,7 @@ export class TestClient {
           `
       }
     });
-  } */
+  } 
 
   async createArticle(): Promise<Errors[] | null> {
     return rp.post(this.url, {
